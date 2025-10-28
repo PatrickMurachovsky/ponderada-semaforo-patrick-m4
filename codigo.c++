@@ -36,8 +36,8 @@ class Semaforo {
     }
 
     void cicloCompleto() {
-      ligarVermelho(4000);  
-      ligarVerde(6000);     
+      ligarVermelho(6000);  
+      ligarVerde(4000);     
       ligarAmarelo(2000);   
     }
 };
