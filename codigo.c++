@@ -5,16 +5,16 @@ class Semaforo {
     int pinoAmarelo;
 
   public:
-    Semaforo(int verde, int vermelho, int amarelo) {
-      pinoVerde = verde;
-      pinoVermelho = vermelho;
-      pinoAmarelo = amarelo;
-    }
+    Semaforo(int verde, int vermelho, int amarelo)
+      : pinoVerde(verde), pinoVermelho(vermelho), pinoAmarelo(amarelo) {}
 
     void iniciar() {
       pinMode(pinoVerde, OUTPUT);
       pinMode(pinoVermelho, OUTPUT);
       pinMode(pinoAmarelo, OUTPUT);
+      digitalWrite(pinoVerde, LOW);
+      digitalWrite(pinoVermelho, LOW);
+      digitalWrite(pinoAmarelo, LOW);
     }
 
     void ligarVermelho(int tempo) {
@@ -42,12 +42,18 @@ class Semaforo {
     }
 };
 
-Semaforo semaforo(6, 7, 8);
+Semaforo* semaforo = nullptr;
 
 void setup() {
-  semaforo.iniciar();
+  semaforo = new Semaforo(6, 7, 8); 
+  semaforo->iniciar();
 }
 
 void loop() {
-  semaforo.cicloCompleto();
+  if (semaforo != nullptr) {
+    semaforo->cicloCompleto();
+  }
 }
+
+
+
